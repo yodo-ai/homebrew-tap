@@ -14,7 +14,6 @@ cask "yodo" do
           verified: "github.com/yodo-ai/yodo/"
     end
   end
-
   on_linux do
     on_arm do
       sha256 "df681d1bf359e80f93a88222516dab5f18134c3ef5bb16595af695a02f454ff2"
