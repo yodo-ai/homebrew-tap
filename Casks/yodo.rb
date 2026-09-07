@@ -5,26 +5,22 @@ cask "yodo" do
   on_macos do
     on_intel do
       sha256 "69397e185ff686530202f4d51d798b088611ff6a483ec6ab5044439b10cadc79"
-      url "https://github.com/yodo-ai/yodo/releases/download/v#{version}/yodo-cli-#{version}-darwin-amd64.tar.gz",
-        verified: "github.com/yodo-ai/yodo/"
+      url "https://github.com/yodo-ai/yodo/releases/download/v#{version}/yodo-cli-#{version}-darwin-amd64.tar.gz"
     end
     on_arm do
       sha256 "9fc216cce13c40210e98e1cb98bed8135dc6ed262b85a044d577d68c2db6c216"
-      url "https://github.com/yodo-ai/yodo/releases/download/v#{version}/yodo-cli-#{version}-darwin-arm64.tar.gz",
-        verified: "github.com/yodo-ai/yodo/"
+      url "https://github.com/yodo-ai/yodo/releases/download/v#{version}/yodo-cli-#{version}-darwin-arm64.tar.gz"
     end
   end
 
   on_linux do
     on_intel do
       sha256 "983cd637061342a4afd73e8dae0ea4d7e4aa737ab086ccf0336872e8de166915"
-      url "https://github.com/yodo-ai/yodo/releases/download/v#{version}/yodo-cli-#{version}-linux-amd64.tar.gz",
-        verified: "github.com/yodo-ai/yodo/"
+      url "https://github.com/yodo-ai/yodo/releases/download/v#{version}/yodo-cli-#{version}-linux-amd64.tar.gz"
     end
     on_arm do
       sha256 "576daa825267fd56309402ca1d0270df7d3294dee4830f4b3784b209ba24501b"
-      url "https://github.com/yodo-ai/yodo/releases/download/v#{version}/yodo-cli-#{version}-linux-arm64.tar.gz",
-        verified: "github.com/yodo-ai/yodo/"
+      url "https://github.com/yodo-ai/yodo/releases/download/v#{version}/yodo-cli-#{version}-linux-arm64.tar.gz"
     end
   end
 
@@ -38,9 +34,9 @@ cask "yodo" do
 
   binary "yodo"
 
-  postflight do
-    if OS.mac?
-      system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/yodo"]
+  postflight_steps do
+    on_macos do
+      run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{staged_path}}/yodo"]
     end
   end
 
